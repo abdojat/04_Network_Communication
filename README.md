@@ -6,7 +6,7 @@
 
 ## المتطلبات على Windows / VS Code
 
-- Java JDK 25 أو أحدث، بحيث يعمل `java -version` و`javac -version`.
+- Java JDK 17 أو أحدث، بحيث يعمل `java -version` و`javac -version`.
 - Apache Maven 3.9 أو أحدث بحيث يعمل `mvn -version`، مع الإنترنت **أول مرة** لتنزيل اعتماد `protobuf-java` وأدوات بناء Maven.
 - VS Code مع إضافة **Extension Pack for Java** (اختيارية لكنها تسهّل فتح Maven).
 - لا تحتاج إلى تثبيت `protoc` لتشغيل الملفات المولدة **المضمّنة مسبقاً**. لإعادة توليدها تحتاج protoc 3.x أو ما يتوافق معه.
@@ -75,7 +75,7 @@ curl.exe -X POST http://localhost:8080/api/analyze -H "Content-Type: application
 | 3.2 إنشاء Protobuf واستعادته | `lab/src/main/java/ProtobufLab.java` |
 | تغيير اسم الحقل لدى المستقبل | `lab/proto/customer_profile_receiver_renamed.proto` و`SchemaRenameLab.java` |
 | مقارنة الأحجام لنفس الحقول | `lab/same_data_for_comparison.json` و `ComparisonLab.java` |
-| التقرير والأسئلة | `report/Network_Communication_Report.docx` و`report/REPORT.md` |
+| التقرير والأسئلة | `report/Report.docx` و`report/REPORT.md` |
 
 ## ملاحظات فنية
 
@@ -102,3 +102,7 @@ protoc -I=lab/proto --java_out=lab/src/main/java lab/proto/customer_profile_rece
 - `report/`: تقرير عربي وإجابات أسئلة التقييم.
 - `results/`: نتيجة التشغيل التجريبي بعد التنفيذ.
 - `run_all.ps1`: سكريبت Windows لتشغيل كل شيء بضغطة واحدة.
+
+## توثيق التشغيل على Windows
+
+نفّذ الطالب `mvn clean package` بنجاح باستخدام OpenJDK 21 ثم شغّل `run_all.ps1` داخل VS Code على Windows. ظهر `All checks PASSED`، ونجحت تجارب `ProtobufLab` و`SchemaRenameLab` و`ComparisonLab` أيضاً. أُضيفت مقتطفات فعلية من صور التشغيل إلى `report/Report.docx`.

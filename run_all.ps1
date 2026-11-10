@@ -27,8 +27,8 @@ try {
     for ($i = 0; $i -lt 30; $i++) {
         Start-Sleep -Milliseconds 300
         try {
-            $one = Invoke-WebRequest 'http://localhost:8080/status' -TimeoutSec 2
-            $two = Invoke-WebRequest 'http://localhost:8081/status' -TimeoutSec 2
+            $one = Invoke-WebRequest 'http://localhost:8080/status' -UseBasicParsing -TimeoutSec 2
+            $two = Invoke-WebRequest 'http://localhost:8081/status' -UseBasicParsing -TimeoutSec 2
             if ($one.StatusCode -eq 200 -and $two.StatusCode -eq 200) { $ready = $true; break }
         } catch { }
     }

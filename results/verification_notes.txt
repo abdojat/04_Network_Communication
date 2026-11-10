@@ -14,8 +14,20 @@ Validated in this preparation environment (OpenJDK 21, protoc 3.13.0):
 - protoc encoded common fields into 35-byte payload, and receiver schema with renamed field #1 decoded the payload.
 - Compact JSON with same four common fields: 118 UTF-8 bytes.
 
-Not validated here:
-- Maven-based Java ProtobufLab/SchemaRenameLab/ComparisonLab execution: protobuf-java runtime and Maven were unavailable in this isolated environment. The Java sources and generated protoc stubs are included, and run_all.ps1 builds/runs them when Java + Maven + Internet are available on Windows.
-- Windows-specific PowerShell execution: run_all.ps1 should be run on the target machine; its output is written to results/run_results.txt.
+Not validated in the initial isolated preparation environment (but subsequently validated by the student on Windows):
+- Maven-based Java ProtobufLab/SchemaRenameLab/ComparisonLab execution: protobuf-java runtime and Maven were unavailable in that isolated environment. The Java sources and generated protoc stubs are included, and run_all.ps1 builds/runs them when Java + Maven + Internet are available on Windows.
+- Windows-specific PowerShell execution was not tested in the initial preparation environment, but the student subsequently ran run_all.ps1 successfully on Windows.
 
 No performance timings are claimed; only serialized byte lengths are compared.
+
+STUDENT WINDOWS VERIFICATION (screenshots provided, 2026-11-10):
+- OpenJDK 21 + Maven: `mvn clean package` -> BUILD SUCCESS for all modules.
+- `run_all.ps1` started HTTP servers on ports 8080/8081.
+- JSON /api/analyze -> HTTP 200 and 312 bytes.
+- SchemaMismatchLab: string price rejected; numeric prices processed.
+- JavaSerializationLab: 345 bytes, transient=null, static=v3.0-UPDATED.
+- JavaExceptionLab: expected NotSerializableException for Address.
+- ProtobufLab: 35 bytes, name restored, city default Damascus, hasCity false.
+- SchemaRenameLab: receiver read client_full_name using tag 1; round-trip true.
+- ComparisonLab: JSON 118 / Java 345 / Protobuf 35 bytes.
+- End result: All checks PASSED.
