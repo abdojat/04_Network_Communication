@@ -1,0 +1,47 @@
+﻿Result of the multiplication is 2000
+
+Result of the multiplication is 8641975258917814551662700000000000000
+
+Result of the multiplication is 2000
+
+Result of the multiplication is 8641975258917814551662700000000000000
+
+JSON bytes sent: 312
+HTTP status: 200
+Server reply: {"received":true,"sizeBytes":312,"payload":{
+  "customerName": "Ahmad Saleh",
+  "city": "Damascus",
+  "pastOrders": [
+    { "orderId": 101, "storeBranch": "Main" },
+    { "orderId": 205, "storeBranch": "West" }
+  ],
+  "purchasedItems": ["Laptop", "Wireless Mouse", "Mechanical Keyboard"],
+  "itemPrices": [1200, 25, 85],
+  "isHolidayDealEligible": true
+}
+}
+Sender / receiver mismatch detected: Schema mismatch: expected JSON number, got "1200"
+Correct numeric input works. Product: 2550000.000000
+Before serialization:
+CustomerProfile{systemVersion='v2.4', tempDiscountToken='SECRET-TOKEN-999', customerName='Ahmad Saleh', purchasedItems=[Laptop, Mouse], itemPrices=[1200, 25], isHolidayDealEligible=true, address=null}
+Java serialization size: 345 bytes
+After deserialization:
+CustomerProfile{systemVersion='v3.0-UPDATED', tempDiscountToken='null', customerName='Ahmad Saleh', purchasedItems=[Laptop, Mouse], itemPrices=[1200, 25], isHolidayDealEligible=true, address=null}
+CHECK PASS: transient=null, static=v3.0-UPDATED
+Expected exception: NotSerializableException
+Non-serializable class: Address
+Binary contains class name CustomerProfile: true
+Binary contains field name customerName: true
+This format is not encrypted; do not deserialize untrusted data.
+Protobuf message size: 35 bytes
+Restored name: Ahmad Saleh
+Default city: Damascus
+Was city field explicitly set? false
+Receiver field name: client_full_name
+Receiver reads tag 1: Ahmad Saleh
+Round-trip succeeded: true
+Comparison (same common fields, no optional city, UTF-8 compact JSON):
+JSON: 118 bytes
+Java Serialization: 345 bytes
+Protocol Buffers: 35 bytes
+Note: sizes depend on schema, data and encoding; Protobuf does not provide encryption.

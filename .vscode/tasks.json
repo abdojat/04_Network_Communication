@@ -1,0 +1,7 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    { "label": "Build all Java modules", "type": "shell", "command": "mvn", "args": ["clean", "package"], "group": "build" },
+    { "label": "Run all lab experiments", "type": "shell", "command": "powershell", "args": ["-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}\\run_all.ps1"] }
+  ]
+}

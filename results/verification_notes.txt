@@ -1,0 +1,21 @@
+VERIFICATION LOG — Network Communication Lab
+
+Validated in this preparation environment (OpenJDK 21, protoc 3.13.0):
+- javac compiled original HTTP server and original HTTP client after filling TODO methods.
+- Two local HTTP workers on ports 18080/18081: 200 OK /status.
+- Original Application dispatched both tasks, with and without X-Debug; results:
+  Result of the multiplication is 2000
+  Result of the multiplication is 8641975258917814551662700000000000000
+- JSON POST to /api/analyze: HTTP 200, 312 UTF-8 bytes, response echoed the JSON.
+- JSON type mismatch example: expected numeric list but received string "1200"; rejecting is correct.
+- Java serialization: serialized 345 bytes, transient token -> null, static systemVersion -> v3.0-UPDATED.
+- Inserting Address not implementing Serializable -> NotSerializableException: Address.
+- Serialized Java bytes contain CustomerProfile and customerName strings.
+- protoc encoded common fields into 35-byte payload, and receiver schema with renamed field #1 decoded the payload.
+- Compact JSON with same four common fields: 118 UTF-8 bytes.
+
+Not validated here:
+- Maven-based Java ProtobufLab/SchemaRenameLab/ComparisonLab execution: protobuf-java runtime and Maven were unavailable in this isolated environment. The Java sources and generated protoc stubs are included, and run_all.ps1 builds/runs them when Java + Maven + Internet are available on Windows.
+- Windows-specific PowerShell execution: run_all.ps1 should be run on the target machine; its output is written to results/run_results.txt.
+
+No performance timings are claimed; only serialized byte lengths are compared.
